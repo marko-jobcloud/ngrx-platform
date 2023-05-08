@@ -4,7 +4,7 @@ import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
-import { provideStore } from '@ngrx/store';
+import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -12,10 +12,12 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AppComponent } from './app/app.component';
 
 import { AppEffects } from './app/app.effects';
+import { counterFeature } from './app/counter.state';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideStore({ router: routerReducer }),
+    provideState(counterFeature),
     provideRouter(
       [
         {
